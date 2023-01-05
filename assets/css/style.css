@@ -2,6 +2,13 @@
 
 /* Styling for Jumbotron */
 
+.jumbotron {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/banner clean.png");
+    background-size: cover;
+}
+
 /* Styling for Recent Searches Area */
 
 /* Styling for Search Field and Buttons */
