@@ -1,17 +1,283 @@
-/* Other Bits e.g. root/repeat, whole document */
-
-/* Styling for Jumbotron */
-
-.jumbotron {
-    display: flex;
-    flex-direction: column;
-    background-image: url("../images/banner clean.png");
-    background-size: cover;
+/**
+ * GLOBAL CSS
+ * ------------------------------------------------------------------------- */
+/* Variables */
+:root {
+  --white: #ffffff;
+  --green: #1abc9c;
+  --light-gray: #f3f3f3;
+  --dark-gray: #181818;
+  --black: #000000;
 }
 
-/* Styling for Recent Searches Area */
+body {
+  color: var(--dark-gray);
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(16px, 1vw, 18px);
+}
 
-/* Styling for Search Field and Buttons */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(32px, 4vw, 72px);
+}
+
+h2 {
+  font-size: clamp(28px, 2vw, 32px);
+}
+
+a {
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+section {
+  padding: 6rem 1rem;
+}
+
+.custom-btn {
+  background-color: var(--green);
+  font-size: clamp(14px, 1vw, 16px);
+  text-transform: uppercase;
+}
+
+/**
+ * HEADER SECTION
+ * ------------------------------------------------------------------------- */
+header {
+  background-color: var(--black);
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: transparent !important;
+}
+
+/* Logo */
+.logo {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.logo img {
+  transform: rotate(8deg);
+}
+
+.logo,
+.logo img {
+  width: 32px;
+  height: auto;
+}
+
+.nav-item {
+  font-size: clamp(14px, 1vw, 16px);
+}
+
+/**
+ * HERO SECTION
+ * ------------------------------------------------------------------------- */
+.hero {
+  background-color: var(--black);
+  margin-bottom: 0;
+  color: var(--white);
+  padding: 3.5rem 1rem;
+}
+
+.hero-text-container {
+  align-items: center;
+}
+
+.hero img {
+  width: 100%;
+}
+
+.hero-leaves {
+  background: url('../images/leaves.png');
+  position: relative;
+  width: 100px;
+  height: 190px;
+  left: 40px;
+  top: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.hero h1 {
+  padding-top: 40px;
+}
+
+.dotted-bg:after {
+  content: '';
+  opacity: 1;
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  transform: translateY(-50%);
+  background: url(../images/dot-grid.svg);
+}
+
+.hero .lead {
+  margin: 1.25rem 0;
+  text-align: center;
+  font-size: clamp(16px, 1vw, 20px);
+  font-weight: 400;
+}
+
+.hero-button {
+  background-color: var(--green);
+  width: 160px;
+  height: 40px;
+  font-weight: 700;
+  font-size: clamp(14px, 1vw, 16px);
+}
+
+.hero-img-container {
+  margin-top: 2.5rem;
+}
+
+/**
+ * INSPIRE ME SECTION
+ * ------------------------------------------------------------------------- */
+.title-content {
+  padding-bottom: 1.5rem;
+}
+
+.inspire-me .inspire-img {
+  order: 1;
+  justify-content: center;
+}
+
+.inspire-me img {
+  transform: rotate(56deg);
+  width: 70%;
+}
+
+.inspire-me form {
+  order: 0;
+}
+
+.inspire-me h2 {
+  margin-bottom: 2rem;
+}
+
+.inspire-me .custom-btn {
+  margin-top: 1.5rem;
+}
+
+/**
+ * FOOTER SECTION
+ * ------------------------------------------------------------------------- */
+.footer {
+  background: var(--dark-gray);
+  padding: 100px 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--light-gray);
+}
+
+/**
+ * MEDIA QUERIES
+ * ------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  /* General */
+  section {
+    padding: 8rem 1rem;
+  }
+
+  /* Logo */
+  .logo {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+  }
+
+  .logo,
+  .logo img {
+    width: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Hero */
+  .hero {
+    padding: 4.125rem 1rem;
+  }
+
+  .hero-text-container {
+    align-items: flex-start;
+  }
+
+  .hero-leaves {
+    display: block;
+  }
+
+  .hero h1 {
+    padding-top: 0;
+  }
+
+  .dotted-bg:after {
+    top: 50%;
+    left: 0;
+    width: 50%;
+    height: 40%;
+  }
+
+  .hero .lead {
+    padding-right: 80px;
+    margin: 2.5rem 0;
+    text-align: left;
+  }
+
+  /* Inspire */
+  .inspire-me img {
+    transform: rotate(180deg);
+    width: 80%;
+  }
+
+  .inspire-me .inspire-img {
+    order: 0;
+    justify-content: flex-start;
+  }
+
+  .inspire-me form {
+    order: 1;
+  }
+}
+
+@media (min-width: 1480px) {
+  /* Container */
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Styling for Jumbotron - done*/
+
+/* .jumbotron {
+  display: flex;
+  flex-direction: column;
+  background-image: url('../images/banner clean.png');
+  background-size: cover;
+} */
+
+/* Styling for Recent Searches Area - done*/
+
+/* Styling for Search Field and Buttons - done*/
 
 /* Styling for Cards Section */
 
