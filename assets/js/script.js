@@ -14,7 +14,8 @@ $(document).ready(function () {
   const cocktailEl = $('#cocktailIngredient');
   const matcherEl = $('#matcher');
 
-  function getMeals(name) {
+  // Get a random meal
+  function getMeal(name) {
     let queryFoodURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + name;
 
     $.ajax({
@@ -22,20 +23,22 @@ $(document).ready(function () {
       method: 'GET',
     }).then(function (response) {
       // getRandomMeal(response.meals);
-      console.log(getRandomMeal(response.meals));
+      console.log(getRandom(response.meals));
     });
   }
 
-  function getRandomMeal(arr) {
-    let randomMeal = arr[Math.floor(Math.random() * arr.length)];
-    return randomMeal;
+  // Randomize the meals/cocktails
+  function getRandom(arr) {
+    let random = arr[Math.floor(Math.random() * arr.length)];
+    return random;
   }
 
+  // On submit display one random meal
   matcherEl.on('click', function (e) {
     e.preventDefault();
 
     let foodInput = foodEl.val().trim().split(' ').join('_');
 
-    getMeals(foodInput);
+    getMeal(foodInput);
   });
 });
