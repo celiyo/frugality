@@ -1,3 +1,5 @@
+/* logo color #1ABC9C */ 
+
 /**
  * GLOBAL CSS
  * ------------------------------------------------------------------------- */
@@ -52,6 +54,8 @@ section {
   background-color: var(--green);
   font-size: clamp(14px, 1vw, 16px);
   text-transform: uppercase;
+  /* adding transition */
+    transition: 0.5s;
 }
 
 /**
@@ -145,6 +149,17 @@ header {
   height: 40px;
   font-weight: 700;
   font-size: clamp(14px, 1vw, 16px);
+  /* adding transition */
+  transition: 0.5s;
+}
+
+/* buttons will be adding a hover effect which includes slight letter spacing and a glow effect */
+.btn:hover {
+  letter-spacing: 0.25em;
+  color: rgb(138, 12, 106);
+  /* font-family: 'Playfair Display', serif; font doesn't really work well as uppercase*/
+  background: #1e9bff;
+  box-shadow: 0 0 15px;
 }
 
 .hero-img-container {
