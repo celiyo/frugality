@@ -3,53 +3,40 @@ $(document).ready(function () {
 
     const foodEl = $('#foodIngredient');
     const cocktailEl = $('#cocktailIngredient');
-    const matcherEl = $('#matcher');
-    let randomMeal; //declare these variables outside the function incase it needs to be used later
-    let mealID;//declare these variables outside the function incase it needs to be used later
-    let queryRecipeURL;
+    const searchBtnEl = $('#searchBtn');
+    // let randomMeal; //declare these variables outside the function incase it needs to be used later
+    // let mealID;//declare these variables outside the function incase it needs to be used later
+    // let queryRecipeURL;
 
     // Get a random meal
-    function getMeal(name) {
+    function getMealId(name) {
         let queryFoodURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + name;
 
         // console.log(queryFoodURL);
         $.ajax({
             url: queryFoodURL,
             method: 'GET',
+            success: function (response) {
+                if (response.meals) {
+                  window.location.href = './results.html';
+                }
+              },
         }).then(function (response) {
-            randomMeal = getRandom(response.meals) //choosed a random meal from the array of meals
-            mealID = (randomMeal.idMeal);// chooses that meals ID
+            let randomMeal = getRandom(response.meals) //choosed a random meal from the array of meals
+            let mealID = (randomMeal.idMeal);// chooses that meals ID
+            localStorage.setItem("meal-id", mealID);
             // console.log(randomMeal);
             //randomMeal.strMeal gives you the meal name
             // console.log(mealID); 
-            queryRecipeURL = "https://themealdb.com/api/json/v1/1/lookup.php?i=" + mealID; //create the URL for the API that gives the meal recipe
-            // console.log(queryRecipeURL); 
+           
             //now feed the recipe url into new ajax
-            $.ajax({
-                url: queryRecipeURL,
-                method: 'GET',
-            }).then(function (response) {
-                // console.log(response);
-                let chosenRecipe = response.meals[0]; //this selects the first array item which is the meal recipe 
-                //  console.log(chosenRecipe);
-                let ingredient1 = chosenRecipe.strIngredient1; // strIngredient1- strIngredient20 gives the 20 recipe ingredients, some meals only have lik 5 or 10 ingredients and the rest are "" or null
-                // console.log("ingredient 1: " + ingredient1);
-                //we need to figure out how to ignore those blank or null ingredientas 
-                let recipeInstructions = chosenRecipe.strInstructions; //selects the recipe instructions 
-                // console.log("instructions: " + recipeInstructions);
-                let recipeIcon = chosenRecipe.strMealThumb; //gives the meal thumbnail/image 
-                // console.log("icon link: " + recipeIcon);
-                let recipeMeasure = chosenRecipe.strMeasure1; //strMeasure1-strMeasure20 gives the measurements (1cup etc, we need to figure out how to ignore blanks and null) 
-                // console.log("measurements: " + recipeMeasure);
-                var youtubeVid = chosenRecipe.strYoutube; //gives you the youtube video for the recipe 
-                // console.log("youtube vid: " + youtubeVid);
-                //is a 
-            })
+            // 
 
             // return randomDrink; //needed?
         });
-
     }
+
+
 
     function getDrink(drink) {
         let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink;
@@ -97,13 +84,14 @@ $(document).ready(function () {
     }
 
     // On submit display one random meal
-    matcherEl.on('click', function (e) {
+    searchBtnEl.on('click', function (e) {
         e.preventDefault();
 
         let foodInput = foodEl.val().trim().split(' ').join('_');
         let drinkInput = cocktailEl.val().trim().split(' ').join('_');
 
-        getMeal(foodInput);//calls the getMeal function and takes the input 'foodInput' (replaces the input 'name' with foodInput)  
-        getDrink(drinkInput);
+        getMealId(foodInput);//calls the getMeal function and takes the input 'foodInput' (replaces the input 'name' with foodInput)  
+        // getDrink(drinkInput);
+        
     });
 });
