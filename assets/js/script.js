@@ -25,14 +25,6 @@ $(document).ready(function () {
             let randomMeal = getRandom(response.meals) //choosed a random meal from the array of meals
             let mealID = (randomMeal.idMeal);// chooses that meals ID
             localStorage.setItem("meal-id", mealID);
-            // console.log(randomMeal);
-            //randomMeal.strMeal gives you the meal name
-            // console.log(mealID); 
-           
-            //now feed the recipe url into new ajax
-            // 
-
-            // return randomDrink; //needed?
         });
     }
 
