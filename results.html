@@ -24,6 +24,93 @@
     
 </head>
 <body>
+<!-- ======= Header Section ======= -->
+<header class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a href="index.html" class="navbar-brand logo">
+        <img src="./assets/images/logo.svg" alt="Logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <nav
+        class="collapse navbar-collapse flex-grow-1"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <li class="nav-item">
+            <a class="nav-link" href="#inspireMe">Inspire me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#recents">Recents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- ======= Hero Section ======= -->
+  <section
+    class="jumbotron jumbotron-fluid d-flex flex-column align-content-center justify-content-center hero hero-results"
+  >
+    <div class="container text-center">
+      <h1 id="randomMealName"></h1>
+      <div>
+        <i class="fa fa-tag"><span id="category" class="ml-2"></span></i>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <img alt="Special meal" id="randomMealImg" />
+  </section>
+  <!-- <div class="wrapper">
+    <h1>Meal</h1>
+    <ol id="meal"></ol>
+    <a href="index.html"><button>Go Back</button></a>
+  </div> -->
+  <!-- ======= Random meal section ======= -->
+  <section class="random-meal">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 p-4 ingredients-content">
+          <h3 class="mb-4">Ingredients</h3>
+          <div id="ingredients"></div>
+        </div>
+        <div class="col-lg-8 p-4">
+          <h3 class="mb-4">Method</h3>
+          <div id="info" class="mb-4"></div>
+          <div class="video">
+            <hr />
+            <a id="videoLink" target="_blank">
+              <i class="fa fa-youtube mr-2"></i>Watch the instructions on
+              YouTube</a
+            >
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 copyright">
+          &copy; Copyright
+          <strong><span>Adriana, Jade, Iain and Steva</span></strong
+          >! All Rights Reserved
+        </div>
+      </div>
+    </div>
+  </footer>
 
     <!-- ======= jQuery, Popper.js and Bootstrap JS ======= -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
