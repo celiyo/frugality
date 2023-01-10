@@ -9,7 +9,7 @@ $(document).ready(function () {
     let queryRecipeURL;
 
     // Get a random meal
-    function getMeal(name) {
+    function getMealId(name) {
         let queryFoodURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + name;
 
         // console.log(queryFoodURL);
