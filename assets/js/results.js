@@ -7,7 +7,7 @@ $(document).ready(function () {
         let methodEl = $("#info");
         let videoLink = $("#videoLink");
         let mealImg = $("#randomMealImg"); 
-        let mealName = $("#meal-name");
+        let mealName = $("#randomMealName");
 
         $.ajax({
             url: queryRecipeURL,
