@@ -30,6 +30,7 @@ $(document).ready(function () {
 
 
 
+
     function getDrink(drink) {
         let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink;
         $.ajax({
@@ -87,3 +88,27 @@ $(document).ready(function () {
         
     });
 });
+
+
+//Meal of The Day name and image.
+
+var randomInspo = $("#meal-text");
+
+// Get a random meal
+
+function getMealInspo() {
+    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i';
+
+    // console.log(queryMealURL);
+    $.ajax({
+        url: queryMealURL,
+        method: 'GET',
+    }).then(function (response) {
+        var randomMeal = (response.meals) //choosed a random meal from the array of meals
+        // var mealName = (randomInspo.strMeal);// chooses that meals Name
+        // randomMeal.textcontent(mealName);
+
+    });
+}
+
+// getMealInspo();
