@@ -6,16 +6,15 @@ $(document).ready(function () {
         let ingredientsEl = $("#ingredients");
         let methodEl = $("#info");
         let videoLink = $("#videoLink");
-        let mealImg = $("#randomMealImg"); 
-        let mealName = $("#randomMealName");
-
+        let mealImg = $("#randomMealImg");
+        let mealName = $("#randomMealName"); 
         $.ajax({
             url: queryRecipeURL,
             method: 'GET',
         }).then(function (response) {
             //  console.log(response);
             let chosenRecipe = response.meals[0]; //this selects the first array item which is the meal recipe 
-             let recipeName = response.meals[0].strMeal; 
+            let recipeName = response.meals[0].strMeal;
             //  console.log(recipeName); 
             mealName.text(recipeName);
             let ingredient1 = chosenRecipe.strIngredient1; // strIngredient1- strIngredient20 gives the 20 recipe ingredients, some meals only have lik 5 or 10 ingredients and the rest are "" or null
@@ -23,10 +22,10 @@ $(document).ready(function () {
             //we need to figure out how to ignore those blank or null ingredientas 
             let recipeInstructions = chosenRecipe.strInstructions; //selects the recipe instructions  
             // console.log("instructions: " + recipeInstructions);  
-            let methodText = $("<p>"); 
+            let methodText = $("<p>");
             methodText.text(recipeInstructions);
             // console.log(methodText);
-            methodEl.append(methodText); 
+            methodEl.append(methodText);
             let recipeIcon = chosenRecipe.strMealThumb; //gives the meal thumbnail/image 
             mealImg.attr("src", recipeIcon);
             // console.log("icon link: " + recipeIcon);
@@ -66,6 +65,48 @@ $(document).ready(function () {
             }
         })
     }
+    function getRandom(arr) {
+        let random = arr[Math.floor(Math.random() * arr.length)];
+        return random;
+    }
+    function getDrink() {
+        let drinkId = localStorage.getItem("drink-id");
+        let drinkURL = "https://thecocktaildb.com/api/json/v1/1/lookup.php?i=" + drinkId; 
+        // console.log(drinkId);
+        // console.log(drinkURL); 
+        let drinkNameEl = $("#drink-name"); 
+        let drinkImgEl = $("#drink-image");
+        let drinkDesc = $("#description");
 
-    getMeal();
+        $.ajax({
+            url: drinkURL,
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response);
+            let chosenDrink = response.drinks[0];
+            let drinkName = chosenDrink.strDrink; 
+            drinkNameEl.text(drinkName);
+            console.log(chosenDrink);
+            //drink thumbnail 
+            let drinkImage = chosenDrink.strDrinkThumb;
+            drinkImgEl.attr("src", drinkImage); 
+            var compliments = ["Try one of these pairings with your meal!", "Fancy a drink? "]
+            let randomCompliment = getRandom(compliments);
+            drinkDesc.text(randomCompliment);
+
+            // // console.log(drinkImage);
+            // let drinkGlass = chosenDrink.strGlass; //type of glass to put the drink in
+            // let drinkIngredient1 = chosenDrink.strIngredient1; //drink ingredient1, same issue as meal recipe
+            // // console.log(drinkIngredient1);
+            // let drinkMeasure1 = chosenDrink.strMeasure1; //drink measurement, again same issue as above,
+            // // console.log(drinkMeasure1);
+            // let drinkVid = chosenDrink.strVideo; //youtube video, not all drinks have a video
+            // // console.log(drinkVid);
+        })
+
+    }
+
+
+    getMeal(); 
+    getDrink();
 });

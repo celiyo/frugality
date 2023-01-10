@@ -31,8 +31,9 @@ $(document).ready(function () {
 
 
 
-    function getDrink(drink) {
-        let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink;
+    function getDrinkId(drink) {
+        let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink; 
+        console.log(queryDrinkURL);
         $.ajax({
             url: queryDrinkURL,
             method: 'GET',
@@ -41,34 +42,14 @@ $(document).ready(function () {
             //now get random drink name
             let randomDrink = getRandom(response.drinks);
             // console.log(randomDrink);
-            let drinkID = randomDrink.idDrink;
-            // console.log(drinkID); 
-            //now feed that ID into drink recipe API
-            let drinkURL = "https://thecocktaildb.com/api/json/v1/1/lookup.php?i=" + drinkID;
-            // console.log(drinkURL); 
-            $.ajax({
-                url: drinkURL,
-                method: 'GET',
-            }).then(function (response) {
-                // console.log(response);
-                let chosenDrink = response.drinks[0];
-                let drinkName = chosenDrink.strDrink;
-                console.log(chosenDrink);
-                //drink thumbnail 
-                let drinkImage = chosenDrink.strDrinkThumb;
-                // console.log(drinkImage);
-                let drinkGlass = chosenDrink.strGlass; //type of glass to put the drink in
-                let drinkIngredient1 = chosenDrink.strIngredient1; //drink ingredient1, same issue as meal recipe
-                // console.log(drinkIngredient1);
-                let drinkMeasure1 = chosenDrink.strMeasure1; //drink measurement, again same issue as above,
-                // console.log(drinkMeasure1);
-                let drinkVid = chosenDrink.strVideo; //youtube video, not all drinks have a video
-                // console.log(drinkVid);
-            })
+            let drinkID = (randomDrink.idDrink);
+            console.log("drink ID" + drinkID); 
+            //store 
+            localStorage.setItem("drink-id", drinkID);
 
-        })
 
-    }
+    }) 
+}
 
     // Randomize the meals/cocktails
     function getRandom(arr) {
