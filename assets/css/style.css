@@ -45,7 +45,7 @@ img {
 }
 
 section {
-  padding: 6rem 1rem;
+  padding: 3rem 1rem;
 }
 
 .custom-btn {
@@ -161,6 +161,7 @@ header {
 .inspire-me .inspire-img {
   order: 1;
   justify-content: center;
+  padding-bottom: 0;
 }
 
 .inspire-me img {
@@ -180,6 +181,32 @@ header {
   margin-top: 1.5rem;
 }
 
+/* Meal Inspiration Section */
+
+.mealinspo-card {
+  height: 200px;
+}
+
+.meal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 50px;
+}
+
+.meal-inspo {
+ margin-top: 15px;
+}
+
+.meal-text {
+  margin-top: 10px;;
+}
+
+/* .meal-img {
+  display: flex;
+  align-items: center;
+} */
+
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
@@ -197,7 +224,7 @@ header {
 @media (min-width: 768px) {
   /* General */
   section {
-    padding: 8rem 1rem;
+    padding: 8rem 3rem 1rem;
   }
 
   /* Logo */
