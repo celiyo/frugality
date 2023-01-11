@@ -274,15 +274,10 @@ header {
  * MEAL INSPIRATION SECTION
  * ------------------------------------------------------------------------- */
 
-.mealinspo-card {
-  height: 200px;
-}
-
 .meal-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px 50px;
 }
 
 .meal-inspo {
@@ -293,10 +288,10 @@ header {
   margin-top: 10px;
 }
 
-/* .meal-img {
-  display: flex;
-  align-items: center;
-} */
+.meal-img {
+  height: auto;
+  max-width: 100%;
+}
 
 /**
  * FOOTER SECTION
