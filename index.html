@@ -44,10 +44,7 @@
         <nav class="collapse navbar-collapse flex-grow-1" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto flex-nowrap">
             <li class="nav-item">
-              <a class="nav-link" href="#inspireMe">Inspire me</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#recents">Recents</a>
+              <a class="nav-link" href="#inspireMe">Inspire Me</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
@@ -67,7 +64,7 @@
             <div class="hero-leaves"></div>
             <h1>Frugality</h1>
             <p class="lead">The one ingredient meal recommender and cocktail pairing site</p>
-            <a class="btn hero-button text-uppercase" href="#inspireMe" role="button">Inspire me</a>
+            <a class="btn hero-button text-uppercase" href="#inspireMe" role="button">Inspire me!</a>
           </div>
           <div class="col-lg-7 col-12 d-flex flex-column justify-content-center hero-img-container">
             <img src="./assets/images/hero.jpg" alt="Hero image" />
@@ -122,18 +119,21 @@
 
     <!-- The following two parts to be placed in a section (This section will hide when submit button clicked) -->
     <!-- Meal of The Day - Card with Image -->
-    <section>
-      <div class="card mealinspo-card">
-    
-        <div class="card-body meal-card">
-          <h3 class="card-title meal-inspo">Meal Inspiration</h3>
-          <p class="card-text" id="meal-text">
-            Lorem ipsum dolor sit amet.
-          </p>
-          <img src="..." class="card-img meal-img" id = "meal-inspo-img"  alt="..." />
+
+    <div class="container-fluid meal-card">
+      <div class="row card mealinspo-card">
+        <div class="cardContainer card-body ">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title meal-inspo">Meal Inspiration</h3>
+              <p class="card-text" id="meal-text">  
+              </p>
+                <img src="..." class="card-img meal-img" id = "inspo-img"  alt="..." />
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!--Search Field and Buttons - done -->
     <!-- add code/card for input1=food ingredient -->

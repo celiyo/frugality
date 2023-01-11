@@ -73,23 +73,30 @@ $(document).ready(function () {
 
 //Meal of The Day name and image.
 
-var randomInspo = $("#meal-text");
+
 
 // Get a random meal
 
 function getMealInspo() {
-    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i';
-
+    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    
     // console.log(queryMealURL);
+    var randomInspo = $("#meal-text");
+    var inspoImg = $("#inspo-img");
+
     $.ajax({
         url: queryMealURL,
         method: 'GET',
     }).then(function (response) {
-        var randomMeal = (response.meals) //choosed a random meal from the array of meals
-        // var mealName = (randomInspo.strMeal);// chooses that meals Name
-        // randomMeal.textcontent(mealName);
-
+        // console.log(response);
+         //random meal
+        var randomMealInspo = response.meals[0];
+        var randomImg = (randomMealInspo.strMealThumb);
+        var mealInspoName = (randomMealInspo.strMeal);
+        randomInspo.text(mealInspoName);
+        inspoImg.attr("src", randomImg);
+        // localStorage.setItem("Inspo-Name", mealInspoName);
     });
 }
 
-// getMealInspo();
+getMealInspo();
