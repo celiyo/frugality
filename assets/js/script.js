@@ -65,7 +65,7 @@ $(document).ready(function () {
         let drinkInput = cocktailEl.val().trim().split(' ').join('_');
 
         getMealId(foodInput);//calls the getMeal function and takes the input 'foodInput' (replaces the input 'name' with foodInput)  
-        // getDrink(drinkInput);
+        getDrinkId(drinkInput);
         
     });
 });
