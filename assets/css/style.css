@@ -5,11 +5,12 @@
 :root {
   --white: #ffffff;
   --green: #1abc9c;
-  --dark-green: #138b73;
   --light-gray: #f3f3f3;
-  --medium-gray: #b2afaf;
   --dark-gray: #181818;
   --black: #000000;
+  --gold: #ffd700;
+  --reddish: #f70e0e;
+  --orange: #dd5a0e;
 }
 
 body {
@@ -58,10 +59,14 @@ section {
   padding: 3rem 1rem;
 }
 
+/* Hello & Welcome: search button  */
 .custom-btn {
-  background-color: var(--green);
+  background-color: var(--gold);
   font-size: clamp(14px, 1vw, 16px);
   text-transform: uppercase;
+  font-weight: bold;
+  /* adding transition */
+  transition: 0.5s;
 }
 
 /**
@@ -69,6 +74,15 @@ section {
  * ------------------------------------------------------------------------- */
 header {
   background-color: var(--black);
+}
+
+/* navbar mild glow effect */
+.nav-link:hover {
+  color: var(--orange);
+  text-shadow: 0 0 5px orange,
+    0 0 25px orange,
+    0 0 50px orange,
+    0 0 100px orange;
 }
 
 .navbar-dark .navbar-toggler {
@@ -153,11 +167,25 @@ header {
 }
 
 .hero-button {
-  background-color: var(--green);
+  background-color: var(--gold);
+  color: var(--dark-gray);
   width: 160px;
   height: 40px;
   font-weight: 700;
   font-size: clamp(14px, 1vw, 16px);
+  /* adding transition */
+  transition: 0.5s;
+  z-index: 5;
+}
+
+/* buttons will be adding a hover effect which includes slight letter spacing and a glow effect */
+.btn:hover {
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  /* font-family: 'Playfair Display', serif; font doesn't really work well as uppercase*/
+  font-family: 'Lato', '' sans-serif;
+  background: var(--reddish);
+  /* box-shadow: 0 0 15px; */
 }
 
 .hero-img-container {
@@ -203,6 +231,10 @@ header {
 /**
  * INSPIRE ME SECTION
  * ------------------------------------------------------------------------- */
+ #inspireMe {
+   background-color: var(--orange);
+ }
+
 .title-content {
   padding-bottom: 1.5rem;
 }
@@ -273,6 +305,9 @@ header {
 /**
  * MEAL INSPIRATION SECTION
  * ------------------------------------------------------------------------- */
+.mealinspo {
+  background-color: var(--black);
+}
 
 .mealinspo-card {
   height: 200px;
@@ -298,12 +333,112 @@ header {
   align-items: center;
 } */
 
+/* --------------------------------------Contact  Us-------------------------------------------------------------- */
+body {
+  background-image: url("../images/loneDish.jpg");
+  background-position: center;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: var(--white);
+  font-size: 45px;
+  text-align: center;
+}
+
+#contactus {
+  -webkit-box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  -moz-box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+input[type=text],
+input[type=Email],
+input[type=Number] {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #cccc;
+  color: var(--white);
+  transition: .3s ease-in-out;
+}
+
+input[type=text]::placeholder,
+input[type=Email]::placeholder,
+input[type=Number]::placeholder {
+  color: var(--white);
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+}
+
+/* had an issue where the transparency was not working now resolved  */
+input[type=text]:focus,
+input[type=text]:hover,
+input[type=Email]:focus,
+input[type=Email]:hover,
+input[type=Number]:focus,
+input[type=Number]:hover {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--gold);
+  background-color: transparent;
+}
+
+#textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #cccc;
+  color: var(--white);
+  transition: .3s ease-in-out;
+}
+
+#textarea::placeholder {
+  color: var(--white);
+}
+
+#textarea:focus,
+#textarea:hover {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--gold);
+
+}
+
+/* centered button (used <center> tag in the html) */
+.text-center {
+  text-align: center;
+}
+
+.btn-info {
+  background-color: var(--gold);
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  width: 160px;
+  height: 40px;
+  font-weight: 700;
+  font-size: clamp(14px, 1vw, 16px);
+  /* adding transition */
+  transition: 0.5s;
+}
+
+.btn-info:hover {
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  font-family: 'Lato', sans-serif;
+  background: var(--reddish);
+  /* box-shadow: 0 0 15px; */
+}
+
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
 .footer {
   background: var(--dark-gray);
-  padding: 100px 0;
+  padding: 20px 0;
   font-size: 14px;
   text-align: center;
   color: var(--light-gray);
