@@ -5,12 +5,11 @@
 :root {
   --white: #ffffff;
   --green: #1abc9c;
+  --dark-green: #138b73;
   --light-gray: #f3f3f3;
+  --medium-gray: #b2afaf;
   --dark-gray: #181818;
   --black: #000000;
-  --gold: #ffd700;
-  --reddish: #f70e0e;
-  --orange: #dd5a0e;
 }
 
 body {
@@ -45,28 +44,21 @@ h4 {
   font-size: clamp(20px, 2vw, 22px);
 }
 
-a {
-  color: var(--white);
-  text-transform: uppercase;
-}
-
 img {
   width: 100%;
   height: auto;
 }
 
-section {
-  padding: 3rem 1rem;
-}
-
-/* Hello & Welcome: search button  */
 .custom-btn {
-  background-color: var(--gold);
+  background-color: var(--green);
   font-size: clamp(14px, 1vw, 16px);
   text-transform: uppercase;
-  font-weight: bold;
-  /* adding transition */
-  transition: 0.5s;
+  color: var(--white);
+}
+
+.custom-btn:hover {
+  background-color: var(--dark-green);
+  color: var(--white);
 }
 
 /**
@@ -74,15 +66,6 @@ section {
  * ------------------------------------------------------------------------- */
 header {
   background-color: var(--black);
-}
-
-/* navbar mild glow effect */
-.nav-link:hover {
-  color: var(--orange);
-  text-shadow: 0 0 5px orange,
-    0 0 25px orange,
-    0 0 50px orange,
-    0 0 100px orange;
 }
 
 .navbar-dark .navbar-toggler {
@@ -105,10 +88,20 @@ header {
   height: auto;
 }
 
-.nav-item {
+.navbar-dark .navbar-nav .nav-link {
   font-size: clamp(13px, 1vw, 14px);
-  color: var(--white);
+  color: var(--light-gray);
   text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--green);
+}
+
+.navbar-dark .navbar-toggler {
+  color: var(--light-gray);
+  border-color: transparent;
+  outline: none;
 }
 
 /**
@@ -121,16 +114,12 @@ header {
   padding: 3.5rem 1rem;
 }
 
-.hero img {
-  width: 100%;
-}
-
 .hero h1 {
   padding-top: 40px;
 }
 
-/* Hero - Index */
-.hero-text-container {
+/* Hero - Index page */
+.hero-text {
   align-items: center;
 }
 
@@ -145,6 +134,7 @@ header {
   background-size: contain;
   transform: rotate(45deg);
   display: none;
+  z-index: 1;
 }
 
 .dotted-bg:after {
@@ -157,6 +147,7 @@ header {
   height: 80%;
   transform: translateY(-50%);
   background: url(../images/dot-grid.svg);
+  z-index: 0;
 }
 
 .hero .lead {
@@ -164,39 +155,31 @@ header {
   text-align: center;
   font-size: clamp(16px, 1vw, 20px);
   font-weight: 400;
+  z-index: 1;
 }
 
-.hero-button {
-  background-color: var(--gold);
-  color: var(--dark-gray);
+.hero a {
+  background-color: var(--green);
   width: 160px;
   height: 40px;
   font-weight: 700;
   font-size: clamp(14px, 1vw, 16px);
-  /* adding transition */
-  transition: 0.5s;
-  z-index: 5;
+  z-index: 1;
 }
 
-/* buttons will be adding a hover effect which includes slight letter spacing and a glow effect */
-.btn:hover {
-  letter-spacing: 0.25em;
-  color: var(--light-gray);
-  /* font-family: 'Playfair Display', serif; font doesn't really work well as uppercase*/
-  font-family: 'Lato', '' sans-serif;
-  background: var(--reddish);
-  /* box-shadow: 0 0 15px; */
+.hero a:hover {
+  background-color: var(--dark-green);
+  color: var(--dark-gray);
 }
 
-.hero-img-container {
+.hero-img {
   margin-top: 2.5rem;
 }
 
-/* Hero - Results */
+/* Hero - Results page */
 .hero-results {
   position: relative;
   overflow: hidden;
-  /* height: 600px; */
 }
 
 .hero-results .container {
@@ -231,18 +214,26 @@ header {
 /**
  * INSPIRE ME SECTION
  * ------------------------------------------------------------------------- */
- #inspireMe {
-   background-color: var(--orange);
- }
-
 .title-content {
+  padding-bottom: 1.5rem;
+}
+
+.inspire-me {
+  padding: 6rem 1rem;
+}
+
+.inspire-text {
   padding-bottom: 1.5rem;
 }
 
 .inspire-me .inspire-img {
   order: 1;
   justify-content: center;
-  padding-bottom: 0;
+}
+
+.inspire-me img {
+  transform: rotate(56deg);
+  width: 70%;
 }
 
 .inspire-me form {
@@ -253,9 +244,47 @@ header {
   margin-bottom: 2rem;
 }
 
-/* .inspire-me .custom-btn {
-  margin-top: 1.5rem;
-} */
+.search-alert {
+  display: none;
+}
+
+/**
+ * TRENDING RECIPE SECTION
+ * ------------------------------------------------------------------------- */
+.recipe-trending {
+  padding: 6rem 1rem;
+}
+
+.recipe-trending h2 {
+  margin-bottom: 2rem;
+}
+
+.recipe-name {
+  padding: 2rem;
+  border: 1px solid var(--medium-gray);
+}
+
+.card-category {
+  text-transform: uppercase;
+}
+
+.recipe-trending .trending-img {
+  justify-content: center;
+}
+
+.recipe-trending img {
+  width: 60%;
+  border-radius: 50%;
+}
+
+/* Trending page */
+#trendingInfo {
+  white-space: pre-line;
+}
+
+#trendingVideoYou {
+  display: none;
+}
 
 /**
  * RANDOM MEAL SECTION
@@ -279,6 +308,10 @@ header {
   white-space: pre-line;
 }
 
+#videoYou {
+  display: none;
+}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -297,36 +330,104 @@ header {
   border-radius: 3px;
 }
 
+.random-meal h4 {
+  text-align: center;
+}
+
 /**
- * MEAL INSPIRATION SECTION
+ * CONTACT SECTION
  * ------------------------------------------------------------------------- */
-.mealinspo {
-  background-color: var(--black);
+.contact {
+  padding: 6rem 1rem;
 }
 
-.meal-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.contact-social {
+  margin-top: 1.5rem;
+  margin-bottom: 4rem;
 }
 
-.meal-inspo {
-  margin-top: 15px;
+.contact-social a {
+  border-radius: 3px;
+  border: 1px solid var(--green);
+  padding: 10px;
+  color: var(--green);
+}
+
+.contact-social a:hover {
+  background-color: var(--dark-green);
+  color: var(--white);
+}
+
+.contact-social i {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/**
+ * DRINKS SECTION
+ * ------------------------------------------------------------------------- */
+.cocktail-content {
+  position: relative;
+}
+
+#cocktailImg {
+  border-radius: 3px;
+  width: 100%;
+}
+
+#cocktailName {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: var(--dark-gray);
+  padding: 16px 0;
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--white);
+  font-weight: 700;
+}
+
+/**
+ * MEAL SUGGESTIONS SECTION
+ * ------------------------------------------------------------------------- */
+.meal-suggestions {
+  /* padding: 0 1rem 8rem 1rem; */
+  padding: 0 1rem 6rem 1rem;
+}
+.meal-suggestions .card {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 20px 10px;
+}
+
+.meal-suggestions .card-content {
+  border-left: 1px solid var(--light-gray);
+}
+
+.card-text i {
+  color: var(--medium-gray);
+}
+
+.meal-suggestions h3 {
   text-align: center;
 }
 
-.card-text {
-  margin-top: 10px;
-  text-align: center;
+.meal-suggestions a {
+  color: var(--green);
 }
 
+.meal-suggestions a:hover {
+  color: var(--dark-green);
+}
 
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
 .footer {
   background: var(--dark-gray);
-  padding: 20px 0;
+  padding: 6rem 0;
   font-size: 14px;
   text-align: center;
   color: var(--light-gray);
@@ -336,12 +437,6 @@ header {
  * MEDIA QUERIES
  * ------------------------------------------------------------------------- */
 @media (min-width: 768px) {
-
-  /* General */
-  section {
-    padding: 8rem 1rem;
-  }
-
   /* Logo */
   .logo {
     padding-top: 0.3125rem;
@@ -353,6 +448,13 @@ header {
     width: 40px;
   }
 
+  /* Sections */
+  .inspire-me,
+  .recipe-week,
+  .contact {
+    padding: 8rem 1rem;
+  }
+
   /* Random meal section */
   .random-meal {
     padding: 0 1rem;
@@ -360,13 +462,8 @@ header {
 }
 
 @media (min-width: 992px) {
-
   /* Hero - Index */
-  .hero {
-    padding: 4.125rem 1rem;
-  }
-
-  .hero-text-container {
+  .hero-text {
     align-items: flex-start;
   }
 
@@ -386,7 +483,7 @@ header {
   }
 
   .hero .lead {
-    padding-right: 80px;
+    padding-right: 5rem;
     margin: 2.5rem 0;
     text-align: left;
   }
@@ -403,32 +500,52 @@ header {
   }
 
   /* Inspire */
+  .inspire-me img {
+    transform: rotate(180deg);
+    width: 80%;
+  }
+
+  .inspire-me .inspire-img {
+    order: 0;
+    justify-content: flex-start;
+  }
+
   .inspire-me form {
     order: 1;
+  }
+
+  /* Trending */
+  .recipe-name {
+    padding: 4rem;
+  }
+
+  .recipe-trending .trending-img {
+    justify-content: end;
+  }
+
+  /* Contact */
+  .contact-social {
+    margin-top: 3rem;
+  }
+
+  /* Random meal */
+  .random-meal h4 {
+    text-align: left;
+  }
+
+  /* Meal suggestions */
+  .meal-suggestions {
+    padding: 0 1rem 8rem 1rem;
+  }
+
+  .meal-suggestions h3 {
+    text-align: left;
   }
 }
 
 @media (min-width: 1480px) {
-
   /* Container */
   .container {
     max-width: 1400px;
   }
-}
-
-/* Drink section */
-/* ------------------------------------------------------------------------------------ */
- .col-sm-4 {
-  text-align: center; 
-  position: relative;
-}
-
-
-#drink-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(115, 111, 111, 0.6);
-  border-radius: 30px;
 }

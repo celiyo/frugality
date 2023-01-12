@@ -1,88 +1,105 @@
 //load code when js doc is fully ready
 $(document).ready(function () {
+  // Inspire me
+  const mealEl = $('#mealIngredient');
+  const cocktailEl = $('#cocktailIngredient');
+  const searchBtnEl = $('#searchBtn');
 
-    const foodEl = $('#foodIngredient');
-    const cocktailEl = $('#cocktailIngredient');
-    const searchBtnEl = $('#searchBtn');
+  // Trending recipe
+  const randomInspo = $('#meal-text');
+  const inspoImg = $('#inspo-img');
+  const inspoCategory = $('#trendingCategory');
+  const viewTrending = $('#viewTrending');
 
-    // Get a random meal
-    function getMealId(name) {
-        let queryFoodURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + name;
+  // Declare the variable mealIds and initialize it with an empty array
+  let mealIds = [];
 
-        // console.log(queryFoodURL);
-        $.ajax({
-            url: queryFoodURL,
-            method: 'GET',
-            success: function (response) {
-                if (response.meals) {
-                    window.location.href = './results.html';
-                }
-            },
-        }).then(function (response) {
-            let randomMeal = getRandom(response.meals) //choosed a random meal from the array of meals
-            let mealID = (randomMeal.idMeal);// chooses that meals ID
-            localStorage.setItem("meal-id", mealID);
-        });
+  getMealInspo();
+
+  // Clear the localStorage if meal IDs exist
+  function removeMealIds() {
+    let mealIds = JSON.parse(localStorage.getItem('meal-ids'));
+    let drinkId = localStorage.getItem('drink-id');
+    let suggestionId = localStorage.getItem('suggestion-id');
+
+    if (mealIds || drinkId || suggestionId) {
+      localStorage.clear();
     }
+  }
 
-    function getDrinkId(drink) {
-        let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink;
-        console.log(queryDrinkURL);
-        $.ajax({
-            url: queryDrinkURL,
-            method: 'GET',
-        }).then(function (response) {
-            // console.log("drink URL: " +queryDrinkURL); 
-            //now get random drink name
-            let randomDrink = getRandom(response.drinks);
-            // console.log(randomDrink);
-            let drinkID = (randomDrink.idDrink);
-            console.log("drink ID" + drinkID);
-            //store 
-            localStorage.setItem("drink-id", drinkID);
-        })
-    }
-
-    // Randomize the meals/cocktails
-    function getRandom(arr) {
-        let random = arr[Math.floor(Math.random() * arr.length)];
-        return random;
-    }
-
-    // On submit display one random meal
-    searchBtnEl.on('click', function (e) {
-        e.preventDefault();
-
-        let foodInput = foodEl.val().trim().split(' ').join('_');
-        let drinkInput = cocktailEl.val().trim().split(' ').join('_');
-
-        getMealId(foodInput);//calls the getMeal function and takes the input 'foodInput' (replaces the input 'name' with foodInput)  
-        getDrinkId(drinkInput);
-
-    });
-});
-
-
-//Meal of The Day name and image.
-// Get a random meal
-
-function getMealInspo() {
-    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-    // console.log(queryMealURL);
-    var randomInspo = $("#meal-text");
-    var inspoImg = $("#inspo-img");
+  // Meal of The Day name and image.
+  function getMealInspo() {
+    let queryURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
     $.ajax({
-        url: queryMealURL,
-        method: 'GET',
+      url: queryURL,
+      method: 'GET',
     }).then(function (response) {
-        // console.log(response);
-        var randomMealInspo = response.meals[0];
-        var randomImg = (randomMealInspo.strMealThumb);
-        var mealInspoName = (randomMealInspo.strMeal);
-        randomInspo.text(mealInspoName);
-        inspoImg.attr("src", randomImg);
-    });
-}
+      let randomMealInspo = response.meals[0];
+      let mealInspoId = randomMealInspo.idMeal;
+      let randomImg = randomMealInspo.strMealThumb;
+      let mealInspoName = randomMealInspo.strMeal;
+      let mealInspoCategory = randomMealInspo.strCategory;
 
-getMealInspo();
+      // Display the meal name, category and image on the home page
+      randomInspo.text(mealInspoName);
+      inspoImg.attr('src', randomImg);
+      inspoCategory.text(mealInspoCategory);
+
+      // Save the searched drink ingredient to the localStorage
+      localStorage.setItem('trending-id', mealInspoId);
+    });
+  }
+
+  // Get 4 random meal IDs based on the ingredient searched
+  function getMealIds(name) {
+    let queryURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + name;
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      success: function (response) {
+        if (response.meals) {
+          window.location.href = './results.html';
+        }
+      },
+    }).then(function (response) {
+      // Choose 4 random meals from the API response
+      let randomMeals = getRandom(response.meals).slice(0, 4);
+
+      for (let i = 0; i < randomMeals.length; i++) {
+        // Save the random meal's Ids to the localStorage
+        let mealId = randomMeals[i].idMeal;
+        mealIds.push(mealId);
+        localStorage.setItem('meal-ids', JSON.stringify(mealIds));
+      }
+    });
+  }
+
+  // On submit display one random meal
+  searchBtnEl.on('click', function (e) {
+    e.preventDefault();
+
+    removeMealIds();
+
+    let mealInput = mealEl.val().trim().split(' ').join('_');
+    let drinkInput = cocktailEl.val().trim().split(' ').join('_');
+
+    if (mealInput === '' || drinkInput === '') {
+      $('.search-alert').css('display', 'block');
+      return;
+    }
+
+    // Calls the getMealIds function and takes the input 'foodInput' (replaces the input 'name' with mealInput)
+    getMealIds(mealInput);
+
+    // Save the searched drink ingredient to the localStorage
+    localStorage.setItem('drink-name', drinkInput);
+  });
+
+  viewTrending.on('click', function (e) {
+    e.preventDefault();
+
+    window.location.href = './view-trending.html';
+  });
+});
