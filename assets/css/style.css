@@ -5,11 +5,12 @@
 :root {
   --white: #ffffff;
   --green: #1abc9c;
-  --dark-green: #138b73;
   --light-gray: #f3f3f3;
-  --medium-gray: #b2afaf;
   --dark-gray: #181818;
   --black: #000000;
+  --gold: #ffd700;
+  --reddish: #f70e0e;
+  --orange: #dd5a0e;
 }
 
 body {
@@ -44,21 +45,28 @@ h4 {
   font-size: clamp(20px, 2vw, 22px);
 }
 
+/* a {
+  color: var(--white);
+  text-transform: uppercase;
+} */
+
 img {
   width: 100%;
   height: auto;
 }
 
-.custom-btn {
-  background-color: var(--green);
-  font-size: clamp(14px, 1vw, 16px);
-  text-transform: uppercase;
-  color: var(--white);
+section {
+  padding: 3rem 1rem;
 }
 
-.custom-btn:hover {
-  background-color: var(--dark-green);
-  color: var(--white);
+/* Hello & Welcome: search button  */
+.custom-btn {
+  background-color: var(--gold);
+  font-size: clamp(14px, 1vw, 16px);
+  text-transform: uppercase;
+  font-weight: bold;
+  /* adding transition */
+  transition: 0.5s;
 }
 
 /**
@@ -66,6 +74,15 @@ img {
  * ------------------------------------------------------------------------- */
 header {
   background-color: var(--black);
+}
+
+/* navbar mild glow effect */
+.nav-link:hover {
+  color: var(--orange);
+  text-shadow: 0 0 5px orange,
+    0 0 25px orange,
+    0 0 50px orange,
+    0 0 100px orange;
 }
 
 .navbar-dark .navbar-toggler {
@@ -88,20 +105,10 @@ header {
   height: auto;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.nav-item {
   font-size: clamp(13px, 1vw, 14px);
-  color: var(--light-gray);
+  color: var(--white);
   text-transform: uppercase;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: var(--green);
-}
-
-.navbar-dark .navbar-toggler {
-  color: var(--light-gray);
-  border-color: transparent;
-  outline: none;
 }
 
 /**
@@ -114,12 +121,16 @@ header {
   padding: 3.5rem 1rem;
 }
 
+.hero img {
+  width: 100%;
+}
+
 .hero h1 {
   padding-top: 40px;
 }
 
-/* Hero - Index page */
-.hero-text {
+/* Hero - Index */
+.hero-text-container {
   align-items: center;
 }
 
@@ -134,7 +145,6 @@ header {
   background-size: contain;
   transform: rotate(45deg);
   display: none;
-  z-index: 1;
 }
 
 .dotted-bg:after {
@@ -147,7 +157,6 @@ header {
   height: 80%;
   transform: translateY(-50%);
   background: url(../images/dot-grid.svg);
-  z-index: 0;
 }
 
 .hero .lead {
@@ -155,31 +164,39 @@ header {
   text-align: center;
   font-size: clamp(16px, 1vw, 20px);
   font-weight: 400;
-  z-index: 1;
 }
 
-.hero a {
-  background-color: var(--green);
+.hero-button {
+  background-color: var(--gold);
+  color: var(--dark-gray);
   width: 160px;
   height: 40px;
   font-weight: 700;
   font-size: clamp(14px, 1vw, 16px);
-  z-index: 1;
+  /* adding transition */
+  transition: 0.5s;
+  z-index: 5;
 }
 
-.hero a:hover {
-  background-color: var(--dark-green);
-  color: var(--dark-gray);
+/* buttons will be adding a hover effect which includes slight letter spacing and a glow effect */
+.btn:hover {
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  /* font-family: 'Playfair Display', serif; font doesn't really work well as uppercase*/
+  font-family: 'Lato', '' sans-serif;
+  background: var(--reddish);
+  /* box-shadow: 0 0 15px; */
 }
 
-.hero-img {
+.hero-img-container {
   margin-top: 2.5rem;
 }
 
-/* Hero - Results page */
+/* Hero - Results */
 .hero-results {
   position: relative;
   overflow: hidden;
+  /* height: 600px; */
 }
 
 .hero-results .container {
@@ -214,26 +231,18 @@ header {
 /**
  * INSPIRE ME SECTION
  * ------------------------------------------------------------------------- */
+ #inspireMe {
+   background-color: var(--orange);
+ }
+
 .title-content {
-  padding-bottom: 1.5rem;
-}
-
-.inspire-me {
-  padding: 6rem 1rem;
-}
-
-.inspire-text {
   padding-bottom: 1.5rem;
 }
 
 .inspire-me .inspire-img {
   order: 1;
   justify-content: center;
-}
-
-.inspire-me img {
-  transform: rotate(56deg);
-  width: 70%;
+  padding-bottom: 0;
 }
 
 .inspire-me form {
@@ -244,47 +253,9 @@ header {
   margin-bottom: 2rem;
 }
 
-.search-alert {
-  display: none;
-}
-
-/**
- * TRENDING RECIPE SECTION
- * ------------------------------------------------------------------------- */
-.recipe-trending {
-  padding: 6rem 1rem;
-}
-
-.recipe-trending h2 {
-  margin-bottom: 2rem;
-}
-
-.recipe-name {
-  padding: 2rem;
-  border: 1px solid var(--medium-gray);
-}
-
-.card-category {
-  text-transform: uppercase;
-}
-
-.recipe-trending .trending-img {
-  justify-content: center;
-}
-
-.recipe-trending img {
-  width: 60%;
-  border-radius: 50%;
-}
-
-/* Trending page */
-#trendingInfo {
-  white-space: pre-line;
-}
-
-#trendingVideoYou {
-  display: none;
-}
+/* .inspire-me .custom-btn {
+  margin-top: 1.5rem;
+} */
 
 /**
  * RANDOM MEAL SECTION
@@ -308,10 +279,6 @@ header {
   white-space: pre-line;
 }
 
-#videoYou {
-  display: none;
-}
-
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -330,104 +297,144 @@ header {
   border-radius: 3px;
 }
 
-.random-meal h4 {
+/**
+ * MEAL INSPIRATION SECTION
+ * ------------------------------------------------------------------------- */
+.mealinspo {
+  background-color: var(--black);
+}
+
+.mealinspo-card {
+  height: 200px;
+}
+
+.meal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 50px;
+}
+
+.meal-inspo {
+  margin-top: 15px;
+}
+
+.meal-text {
+  margin-top: 10px;
+}
+
+/* .meal-img {
+  display: flex;
+  align-items: center;
+} */
+
+/* --------------------------------------Contact  Us-------------------------------------------------------------- */
+body {
+  background-image: url("../images/loneDish.jpg");
+  background-position: center;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: var(--white);
+  font-size: 45px;
   text-align: center;
 }
 
-/**
- * CONTACT SECTION
- * ------------------------------------------------------------------------- */
-.contact {
-  padding: 6rem 1rem;
+#contactus {
+  -webkit-box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  -moz-box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  box-shadow: 3px 6px 32px 2px rgb(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
-.contact-social {
-  margin-top: 1.5rem;
-  margin-bottom: 4rem;
-}
-
-.contact-social a {
-  border-radius: 3px;
-  border: 1px solid var(--green);
-  padding: 10px;
-  color: var(--green);
-}
-
-.contact-social a:hover {
-  background-color: var(--dark-green);
-  color: var(--white);
-}
-
-.contact-social i {
-  font-size: 24px;
-  line-height: 24px;
-}
-
-/**
- * DRINKS SECTION
- * ------------------------------------------------------------------------- */
-.cocktail-content {
-  position: relative;
-}
-
-#cocktailImg {
-  border-radius: 3px;
-  width: 100%;
-}
-
-#cocktailName {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background-color: var(--dark-gray);
-  padding: 16px 0;
-  margin-bottom: 0;
-  text-align: center;
-  color: var(--white);
-  font-weight: 700;
-}
-
-/**
- * MEAL SUGGESTIONS SECTION
- * ------------------------------------------------------------------------- */
-.meal-suggestions {
-  /* padding: 0 1rem 8rem 1rem; */
-  padding: 0 1rem 6rem 1rem;
-}
-.meal-suggestions .card {
-  border: 0;
+input[type=text],
+input[type=Email],
+input[type=Number] {
   background: transparent;
-  border-radius: 0;
-  padding: 20px 10px;
+  border: none;
+  border-bottom: 2px solid #cccc;
+  color: var(--white);
+  transition: .3s ease-in-out;
 }
 
-.meal-suggestions .card-content {
-  border-left: 1px solid var(--light-gray);
+input[type=text]::placeholder,
+input[type=Email]::placeholder,
+input[type=Number]::placeholder {
+  color: var(--white);
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
 }
 
-.card-text i {
-  color: var(--medium-gray);
+/* had an issue where the transparency was not working now resolved  */
+input[type=text]:focus,
+input[type=text]:hover,
+input[type=Email]:focus,
+input[type=Email]:hover,
+input[type=Number]:focus,
+input[type=Number]:hover {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--gold);
+  background-color: transparent;
 }
 
-.meal-suggestions h3 {
+#textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #cccc;
+  color: var(--white);
+  transition: .3s ease-in-out;
+}
+
+#textarea::placeholder {
+  color: var(--white);
+}
+
+#textarea:focus,
+#textarea:hover {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--gold);
+
+}
+
+/* centered button (used <center> tag in the html) */
+.text-center {
   text-align: center;
 }
 
-.meal-suggestions a {
-  color: var(--green);
+.btn-info {
+  background-color: var(--gold);
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  width: 160px;
+  height: 40px;
+  font-weight: 700;
+  font-size: clamp(14px, 1vw, 16px);
+  /* adding transition */
+  transition: 0.5s;
 }
 
-.meal-suggestions a:hover {
-  color: var(--dark-green);
+.btn-info:hover {
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  font-family: 'Lato', sans-serif;
+  background: var(--reddish);
+  /* box-shadow: 0 0 15px; */
 }
+
 
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
 .footer {
   background: var(--dark-gray);
-  padding: 6rem 0;
+  padding: 20px 0;
   font-size: 14px;
   text-align: center;
   color: var(--light-gray);
@@ -437,6 +444,12 @@ header {
  * MEDIA QUERIES
  * ------------------------------------------------------------------------- */
 @media (min-width: 768px) {
+
+  /* General */
+  section {
+    padding: 8rem 1rem;
+  }
+
   /* Logo */
   .logo {
     padding-top: 0.3125rem;
@@ -448,13 +461,6 @@ header {
     width: 40px;
   }
 
-  /* Sections */
-  .inspire-me,
-  .recipe-week,
-  .contact {
-    padding: 8rem 1rem;
-  }
-
   /* Random meal section */
   .random-meal {
     padding: 0 1rem;
@@ -462,8 +468,13 @@ header {
 }
 
 @media (min-width: 992px) {
+
   /* Hero - Index */
-  .hero-text {
+  .hero {
+    padding: 4.125rem 1rem;
+  }
+
+  .hero-text-container {
     align-items: flex-start;
   }
 
@@ -483,7 +494,7 @@ header {
   }
 
   .hero .lead {
-    padding-right: 5rem;
+    padding-right: 80px;
     margin: 2.5rem 0;
     text-align: left;
   }
@@ -500,52 +511,32 @@ header {
   }
 
   /* Inspire */
-  .inspire-me img {
-    transform: rotate(180deg);
-    width: 80%;
-  }
-
-  .inspire-me .inspire-img {
-    order: 0;
-    justify-content: flex-start;
-  }
-
   .inspire-me form {
     order: 1;
-  }
-
-  /* Trending */
-  .recipe-name {
-    padding: 4rem;
-  }
-
-  .recipe-trending .trending-img {
-    justify-content: end;
-  }
-
-  /* Contact */
-  .contact-social {
-    margin-top: 3rem;
-  }
-
-  /* Random meal */
-  .random-meal h4 {
-    text-align: left;
-  }
-
-  /* Meal suggestions */
-  .meal-suggestions {
-    padding: 0 1rem 8rem 1rem;
-  }
-
-  .meal-suggestions h3 {
-    text-align: left;
   }
 }
 
 @media (min-width: 1480px) {
+
   /* Container */
   .container {
     max-width: 1400px;
   }
+}
+
+/* Drink section */
+/* ------------------------------------------------------------------------------------ */
+ .col-sm-4 {
+  text-align: center; 
+  position: relative;
+}
+
+
+#drink-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(115, 111, 111, 0.6);
+  border-radius: 30px;
 }
