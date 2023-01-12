@@ -4,9 +4,6 @@ $(document).ready(function () {
     const foodEl = $('#foodIngredient');
     const cocktailEl = $('#cocktailIngredient');
     const searchBtnEl = $('#searchBtn');
-    // let randomMeal; //declare these variables outside the function incase it needs to be used later
-    // let mealID;//declare these variables outside the function incase it needs to be used later
-    // let queryRecipeURL;
 
     // Get a random meal
     function getMealId(name) {
@@ -18,9 +15,9 @@ $(document).ready(function () {
             method: 'GET',
             success: function (response) {
                 if (response.meals) {
-                  window.location.href = './results.html';
+                    window.location.href = './results.html';
                 }
-              },
+            },
         }).then(function (response) {
             let randomMeal = getRandom(response.meals) //choosed a random meal from the array of meals
             let mealID = (randomMeal.idMeal);// chooses that meals ID
@@ -28,11 +25,8 @@ $(document).ready(function () {
         });
     }
 
-
-
-
     function getDrinkId(drink) {
-        let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink; 
+        let queryDrinkURL = "https://thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink;
         console.log(queryDrinkURL);
         $.ajax({
             url: queryDrinkURL,
@@ -43,13 +37,11 @@ $(document).ready(function () {
             let randomDrink = getRandom(response.drinks);
             // console.log(randomDrink);
             let drinkID = (randomDrink.idDrink);
-            console.log("drink ID" + drinkID); 
+            console.log("drink ID" + drinkID);
             //store 
             localStorage.setItem("drink-id", drinkID);
-
-
-    }) 
-}
+        })
+    }
 
     // Randomize the meals/cocktails
     function getRandom(arr) {
@@ -66,30 +58,31 @@ $(document).ready(function () {
 
         getMealId(foodInput);//calls the getMeal function and takes the input 'foodInput' (replaces the input 'name' with foodInput)  
         getDrinkId(drinkInput);
-        
+
     });
 });
 
 
 //Meal of The Day name and image.
-
-var randomInspo = $("#meal-text");
-
 // Get a random meal
 
 function getMealInspo() {
-    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i';
-
+    let queryMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
     // console.log(queryMealURL);
+    var randomInspo = $("#meal-text");
+    var inspoImg = $("#inspo-img");
+
     $.ajax({
         url: queryMealURL,
         method: 'GET',
     }).then(function (response) {
-        var randomMeal = (response.meals) //choosed a random meal from the array of meals
-        // var mealName = (randomInspo.strMeal);// chooses that meals Name
-        // randomMeal.textcontent(mealName);
-
+        // console.log(response);
+        var randomMealInspo = response.meals[0];
+        var randomImg = (randomMealInspo.strMealThumb);
+        var mealInspoName = (randomMealInspo.strMeal);
+        randomInspo.text(mealInspoName);
+        inspoImg.attr("src", randomImg);
     });
 }
 
-// getMealInspo();
+getMealInspo();
