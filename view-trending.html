@@ -51,10 +51,7 @@
         <nav class="collapse navbar-collapse flex-grow-1" id="mainNavigation">
           <ul class="navbar-nav ml-auto flex-nowrap">
             <li>
-              <a class="nav-link" href="#suggestions">Suggestions</a>
-            </li>
-            <li>
-              <a class="btn ml-lg-2 custom-btn" href="./index.html#inspireMe">Try again</a>
+              <a class="btn custom-btn" href="./index.html#inspireMe">Inspire me</a>
             </li>
           </ul>
         </nav>
@@ -65,16 +62,16 @@
     <section
       class="jumbotron jumbotron-fluid d-flex flex-column align-content-center justify-content-center hero hero-results">
       <div class="container text-center">
-        <h1 id="randomMealName"></h1>
+        <h1 id="trendingName"></h1>
         <div>
-          <i class="fa fa-tag"><span id="category" class="ml-2"></span></i>
+          <i class="fa fa-tag"><span id="trendingCategory" class="ml-2"></span></i>
         </div>
       </div>
       <div class="overlay"></div>
-      <img alt="Special meal" id="randomMealImg" />
+      <img alt="Special meal" id="trendingImg" />
     </section>
 
-    <!-- ======= Random meal section ======= -->
+    <!-- ======= Trending meal recipe section ======= -->
     <section class="random-meal">
       <div class="container">
         <div class="card border-0 rounded shadow">
@@ -82,40 +79,25 @@
             <div class="row justify-content-between mt-5 mb-4 clearfix">
               <div class="col-lg-4">
                 <h4 class="mb-4">Ingredients</h4>
-                <ul id="ingredients" class="list-unstyled bg-light p-4"></ul>
-                <div class="cocktail">
-                  <h4 class="mb-4 mt-5">Fancy a drink?</h4>
-                  <div class="cocktail-content">
-                    <img id="cocktailImg" alt="Cocktail image" />
-                    <p id="cocktailName"></p>
-                  </div>
-                </div>
+                <ul id="trendingIngredients" class="list-unstyled bg-light p-4"></ul>
               </div>
               <div class="col-lg-8 mt-4 mt-lg-0">
-                <div id="videoYou">
+                <div id="trendingVideoYou">
                   <h4 class="mb-4">Video</h4>
                   <div class="video-container mb-5">
                     <iframe
-                      id="videoLink"
+                      id="trendingVideoLink"
                       frameborder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                       allowfullscreen></iframe>
                   </div>
                 </div>
                 <h4 class="mb-4">Preparation</h4>
-                <div id="info" class="mb-4"></div>
+                <div id="trendingInfo" class="mb-4"></div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ======= Meal suggestions section ======= -->
-    <section class="meal-suggestions" id="suggestions">
-      <div class="container">
-        <h3 class="mb-4">You may also like</h3>
-        <div id="cards" class="row no-gutters rounded shadow text-center"></div>
       </div>
     </section>
 
@@ -145,6 +127,6 @@
 
     <!-- ======= Theme JS ======= -->
     <script src="./assets/js/random.js"></script>
-    <script src="./assets/js/results.js"></script>
+    <script src="./assets/js/trending.js"></script>
   </body>
 </html>

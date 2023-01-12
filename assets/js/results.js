@@ -1,47 +1,107 @@
 $(document).ready(function () {
+  let mealIds = JSON.parse(localStorage.getItem('meal-ids'));
+  let drinkInput = localStorage.getItem('drink-name');
+  let suggestionId = localStorage.getItem('suggestion-id');
+
+  // Random meal
+  const mealNameEl = $('#randomMealName');
+  const mealImgEl = $('#randomMealImg');
+  const categoryEl = $('#category');
+  const ingredientsEl = $('#ingredients');
+  const methodEl = $('#info');
+  const videoLinkEl = $('#videoLink');
+
+  // Suggested meals
+  const cardsEl = $('#cards');
+
+  // Cocktail match
+  const cocktailImgEl = $('#cocktailImg');
+  const cocktailNameEl = $('#cocktailName');
+
+  init();
+
+  // Build the suggested meal cards
+  function buildCard(img, title, text, url, id) {
+    let colEl = $('<div>').addClass('col-md-4 col-sm-12 bg-white card-content');
+    let cardEl = $('<div>').addClass('card').attr('id', id);
+    let bodyEl = $('<div>').addClass('card-body');
+    let imgEl = $('<img>').attr('src', img);
+    let titleEl = $('<h5>').addClass('card-title mt-4');
+    let titleLinkEl = $('<a>').attr('href', url).text(title);
+    let textEl = $('<p>').addClass('card-text');
+    let icoEl = $('<i>').addClass('fa fa-tag');
+    let spanEl = $('<span>').addClass('ml-2').attr('id', 'category').text(text);
+    textEl.append(icoEl, spanEl);
+    titleEl.append(titleLinkEl);
+    bodyEl.append(imgEl, titleEl, textEl);
+    cardEl.append(bodyEl);
+    colEl.append(cardEl);
+    cardsEl.append(colEl);
+  }
+
+  // Get suggested meals by ID
+  function getSuggestions(id) {
+    let queryURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id;
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+    }).then(function (response) {
+      let data = response.meals[0];
+      let dataUrl = '#';
+      buildCard(data.strMealThumb, data.strMeal, data.strCategory, dataUrl, data.idMeal);
+    });
+  }
+
+  // Display suggested meals
+  function displaySuggestions() {
+    for (let i = 0; i < mealIds.length; i++) {
+      if (
+        (!suggestionId && mealIds[i] !== mealIds[0]) ||
+        (suggestionId && mealIds[i] !== suggestionId)
+      ) {
+        getSuggestions(mealIds[i]);
+      }
+    }
+  }
+
+  // Get and display the random meal recipe
   function getMeal() {
-    let mealID = localStorage.getItem('meal-id');
-    let queryRecipeURL = 'https://themealdb.com/api/json/v1/1/lookup.php?i=' + mealID; //create the URL for the API that gives the meal recipe
-    //console.log(queryRecipeURL);
-    let ingredientsEl = $('#ingredients');
-    let methodEl = $('#info');
-    let videoLink = $('#videoLink');
-    let mealImg = $('#randomMealImg');
-    let mealName = $('#randomMealName');
-    const categoryEl = $('#category');
+    let queryRecipeURL;
+    if (suggestionId) {
+      queryRecipeURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + suggestionId;
+    } else {
+      queryRecipeURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + mealIds[0];
+    }
+
     $.ajax({
       url: queryRecipeURL,
       method: 'GET',
     }).then(function (response) {
-      //  console.log(response);
-      let chosenRecipe = response.meals[0]; //this selects the first array item which is the meal recipe
+      let chosenRecipe = response.meals[0]; // Selects the first array item which is the meal recipe
+
+      // Display the meal name
       let recipeName = response.meals[0].strMeal;
-      //  console.log(recipeName);
-      mealName.text(recipeName);
-      let ingredient1 = chosenRecipe.strIngredient1; // strIngredient1- strIngredient20 gives the 20 recipe ingredients, some meals only have lik 5 or 10 ingredients and the rest are "" or null
-      console.log('ingredient 1: ' + ingredient1);
-      //we need to figure out how to ignore those blank or null ingredientas
-      let recipeInstructions = chosenRecipe.strInstructions; //selects the recipe instructions
-      // console.log("instructions: " + recipeInstructions);
-      let methodText = $('<p>');
-      methodText.text(recipeInstructions);
-      // console.log(methodText);
-      methodEl.append(methodText);
-      let recipeIcon = chosenRecipe.strMealThumb; //gives the meal thumbnail/image
-      mealImg.attr('src', recipeIcon);
+      mealNameEl.text(recipeName);
+
+      // Display the recipe instructions
+      methodEl.html(chosenRecipe.strInstructions);
+
+      // Displays the meal thumbnail/image
+      let recipeIcon = chosenRecipe.strMealThumb;
+      mealImgEl.attr('src', recipeIcon);
 
       // Display the meal category
       categoryEl.text(chosenRecipe.strCategory);
 
-      // console.log("icon link: " + recipeIcon);
-      let recipeMeasure = chosenRecipe.strMeasure1; //strMeasure1-strMeasure20 gives the measurements (1cup etc, we need to figure out how to ignore blanks and null)
-      // console.log("measurements: " + recipeMeasure);
-      var youtubeVid = chosenRecipe.strYoutube; //gives you the youtube video for the recipe
-      // console.log("youtube vid: " + youtubeVid);
-      var youtubeEmbd = youtubeVid.split('watch?v=').join('embed/');
-      videoLink.attr('src', youtubeEmbd);
-      // Get ingredients
+      // Displays the youtube video for the recipe if available
+      let youtubeVid = chosenRecipe.strYoutube;
+      if (youtubeVid !== '') {
+        let youtubeEmbed = youtubeVid.split('watch?v=').join('embed/');
+        videoLinkEl.attr('src', youtubeEmbed);
+        $('#videoYou').css('display', 'block');
+      }
 
+      // Get ingredients
       let rawIngredients = $.map(Object.keys(chosenRecipe), function (val) {
         if (val.indexOf('strIngredient') != -1) {
           return chosenRecipe[val];
@@ -50,6 +110,7 @@ $(document).ready(function () {
       let filteredIngredients = rawIngredients.filter(function (val) {
         return val !== '';
       });
+
       // Get quantities
       let rawQty = $.map(Object.keys(chosenRecipe), function (val) {
         if (val.indexOf('strMeasure') != -1) {
@@ -59,6 +120,7 @@ $(document).ready(function () {
       let filteredQty = rawQty.filter(function (val) {
         return val !== ' ';
       });
+
       // Display quantities and ingredients
       for (let i = 0; i < filteredQty.length, i < filteredIngredients.length; i++) {
         let qty = filteredQty[i];
@@ -70,46 +132,54 @@ $(document).ready(function () {
       }
     });
   }
-  function getRandom(arr) {
-    let random = arr[Math.floor(Math.random() * arr.length)];
-    return random;
-  }
-  function getDrink() {
-    let drinkId = localStorage.getItem('drink-id');
-    let drinkURL = 'https://thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkId;
-    // console.log(drinkId);
-    // console.log(drinkURL);
-    let drinkNameEl = $('#drink-name');
-    let drinkImgEl = $('#drink-image');
-    let drinkDesc = $('#description');
 
+  // Get the ID of a random drink based on the ingredient searched
+  function getDrink() {
+    let queryURL = 'https://thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinkInput;
     $.ajax({
-      url: drinkURL,
+      url: queryURL,
       method: 'GET',
     }).then(function (response) {
-      console.log(response);
-      let chosenDrink = response.drinks[0];
-      let drinkName = chosenDrink.strDrink;
-      drinkNameEl.text(drinkName);
-      console.log(chosenDrink);
-      //drink thumbnail
-      let drinkImage = chosenDrink.strDrinkThumb;
-      drinkImgEl.attr('src', drinkImage);
-      var compliments = ['Try one of these pairings with your meal!', 'Fancy a drink? '];
-      let randomCompliment = getRandom(compliments);
-      drinkDesc.text(randomCompliment);
+      // Get random drink name
+      let randomDrink = getRandom(response.drinks).slice(0, 1)[0];
 
-      // // console.log(drinkImage);
-      // let drinkGlass = chosenDrink.strGlass; //type of glass to put the drink in
-      // let drinkIngredient1 = chosenDrink.strIngredient1; //drink ingredient1, same issue as meal recipe
-      // // console.log(drinkIngredient1);
-      // let drinkMeasure1 = chosenDrink.strMeasure1; //drink measurement, again same issue as above,
-      // // console.log(drinkMeasure1);
-      // let drinkVid = chosenDrink.strVideo; //youtube video, not all drinks have a video
-      // // console.log(drinkVid);
+      // Display the cocktail name
+      let drinkName = randomDrink.strDrink;
+      cocktailNameEl.text(drinkName);
+
+      // Display the cocktail Image
+      let drinkImg = randomDrink.strDrinkThumb;
+      cocktailImgEl.attr('src', drinkImg);
     });
   }
 
-  getMeal();
-  getDrink();
+  function getSuggestedMeal(name) {
+    let queryURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + name;
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      success: function (response) {
+        if (response.meals) {
+          window.location.href = './results.html';
+        }
+      },
+    }).then(function (response) {
+      let suggestedMeal = response.meals[0].idMeal;
+      localStorage.setItem('suggestion-id', suggestedMeal);
+    });
+  }
+
+  function init() {
+    getMeal();
+    getDrink();
+    displaySuggestions();
+  }
+
+  cardsEl.on('click', 'a', function (e) {
+    e.preventDefault();
+
+    let clickedId = $(e.target).closest('.card').attr('id');
+    getSuggestedMeal(clickedId);
+  });
 });

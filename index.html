@@ -1,110 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ======= Bootstrap CSS and FontAwesome ======= -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ======= Bootstrap CSS and FontAwesome ======= -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- ======= Google Fonts ======= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet" />
 
-  <!-- ======= Google Fonts ======= -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600&display=swap"
-    rel="stylesheet" />
+    <!-- ======= Favicon ======= -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon.png" />
 
-<body>
-  <!-- ======= Header Section ======= -->
-  <header class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a href="index.html" class="navbar-brand logo">
-        <img src="./assets/images/logo.svg" alt="Logo" />
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <nav class="collapse navbar-collapse flex-grow-1" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto flex-nowrap">
-          <li class="nav-item">
-            <a class="nav-link" href="#inspireMe">Inspire Me</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- ======= Theme CSS ======= -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Frugality - One stop meals inspiration!</title>
+  </head>
 
-  <!-- ======= Hero Section ======= -->
-  <section
-    class="jumbotron jumbotron-fluid min-vh-100 d-flex flex-column align-content-center justify-content-center hero">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-12 dotted-bg d-flex flex-column justify-content-center hero-text-container">
-          <div class="hero-leaves"></div>
-          <h1>Frugality</h1>
-          <p class="lead">The one ingredient meal recommender and cocktail pairing site</p>
-          <a class="btn hero-button text-uppercase" href="#inspireMe" role="button">Inspire me!</a>
-        </div>
-        <div class="col-lg-7 col-12 d-flex flex-column justify-content-center hero-img-container">
-          <img src="./assets/images/hero.jpg" alt="Hero image" />
+  <body>
+    <!-- ======= Header Section ======= -->
+    <header class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a href="index.html" class="navbar-brand logo">
+          <img src="./assets/images/logo.svg" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#mainNavigation"
+          aria-controls="mainNavigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="collapse navbar-collapse flex-grow-1" id="mainNavigation">
+          <ul class="navbar-nav ml-auto flex-nowrap">
+            <li>
+              <a class="nav-link" href="#inspireMe">Inspire Me</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#recipeTrending">Trending</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ======= Hero Section ======= -->
+    <section
+      class="jumbotron jumbotron-fluid min-vh-100 d-flex flex-column align-content-center justify-content-center hero">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-5 col-12 d-flex flex-column justify-content-center dotted-bg hero-text">
+            <div class="hero-leaves"></div>
+            <h1>Frugality</h1>
+            <p class="lead">The one ingredient meal recommender and cocktail pairing site</p>
+            <a class="btn text-uppercase" href="#inspireMe" role="button">Inspire me!</a>
+          </div>
+          <div class="col-lg-7 col-12 d-flex flex-column justify-content-center hero-img">
+            <img src="./assets/images/hero.jpg" alt="Hero image" />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ======= Inspire-me section ======= -->
+    <section class="inspire-me" id="inspireMe">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-xl-7 d-flex align-content-center inspire-img">
+            <img src="./assets/images/inspire.png" alt="Special meal" />
+          </div>
+
+          <form
+            class="col-lg-6 col-xl-5 d-flex flex-column align-content-center justify-content-center">
+            <div class="title-content text-center">
+              <h2>Hello & Welcome</h2>
+              <p>
+                Is it one of those days when you only have that one item in your fridge and don't
+                know what to make?! Why not place that lonely ingredient down below and watch it get
+                transformed into a marvelous meal? And, of course, we will pair it with a wonderful
+                drink. So why not try it?!
+              </p>
             </div>
-            <div class="col-md-12 my-1">
-              <label class="sr-only" for="cocktailIngredient">Cocktail ingredient</label>
-              <input type="text" class="form-control" id="cocktailIngredient"
-                placeholder="Enter a cocktail ingredient" />
+            <div class="form-group row justify-content-center">
+              <div class="col-md-12 my-1">
+                <label class="sr-only" for="mealIngredient">Meal ingredient</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mealIngredient"
+                  placeholder="Enter a meal ingredient" />
+              </div>
+              <div class="col-md-12 my-1">
+                <label class="sr-only" for="cocktailIngredient">Cocktail ingredient</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cocktailIngredient"
+                  placeholder="Enter a cocktail ingredient" />
+              </div>
+              <div class="col-md-12 my-1">
+                <div
+                  class="alert alert-warning alert-dismissible fade show search-alert"
+                  role="alert">
+                  Enter a meal and cocktail ingredient!
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-12 my-1">
+                <button type="submit" class="btn btn-lg w-100 custom-btn" id="searchBtn">
+                  Search
+                </button>
+              </div>
             </div>
-            <div class="col-md-12 my-1">
-              <button type="submit" class="btn btn-lg custom-btn w-100" id="searchBtn">
-                Search
-              </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Trending recipe ======= -->
+    <section class="bg-light recipe-trending" id="recipeTrending">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-6 col-xl-5 d-flex flex-column flex-wrap align-content-center justify-content-center">
+            <div class="title-content text-center">
+              <h2>Trending recipe</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+              </p>
+              <div class="no-gutters rounded shadow mt-4 mb-2 recipe-name">
+                <h4 class="card-text text-center mt-2" id="meal-text"></h4>
+                <i class="fa fa-tag"
+                  ><span id="trendingCategory" class="ml-2 card-category"></span
+                ></i>
+                <button type="submit" class="btn btn-lg w-100 mt-4 custom-btn" id="viewTrending">
+                  View recipe
+                </button>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Meal of The Day - Card with Image -->
-
+          <div class="col-lg-6 col-xl-7 d-flex align-content-center flex-wrap trending-img">
+            <img class="card-img" id="inspo-img" alt="Trending recipe" />
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- <footer>By Adriana, Jade, Iain and Steva!</footer> -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mp-md-5">
+            <h2 class="mb-5">Get Connected with Us!</h2>
+            <p class="lead">Questions? Comments? Please fill out the Form.</p>
+            <p>Thank you for being in touch!</p>
+            <hr />
+            <div class="contact-social">
+              <a href="mailto:info@ap.com" class="mr-2"><i class="fa fa-envelope"></i></a>
+              <a href="https://github.com/celiyo" target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6 pl-md-5">
+            <form class="row mb-0" name="contact">
+              <div class="col-md-6 form-group">
+                <label for="contactName">Name <small>*</small></label>
+                <input type="text" id="contactName" class="form-control required" />
+              </div>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 copyright">
-          &copy; Copyright
-          <strong><span>Adriana, Jade, Iain and Steva</span></strong>! All Rights Reserved
+              <div class="col-md-6 form-group">
+                <label for="contactEmail">Email <small>*</small></label>
+                <input type="email" id="contactEmail" class="form-control required" />
+              </div>
+              <div class="col-12 form-group">
+                <label for="contactMessage">Message <small>*</small></label>
+                <textarea
+                  class="form-control required"
+                  id="contactMessage"
+                  rows="6"
+                  cols="30"></textarea>
+              </div>
+              <div class="col-12 form-group">
+                <button class="btn btn-large m-0 custom-btn" type="submit" id="contactSubmit">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
+    <!-- #content end -->
 
-  <!-- ======= jQuery, Popper.js and Bootstrap JS ======= -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- ======= Footer section ======= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 copyright">
+            &copy; Copyright
+            <strong><span>Adriana, Jade, Iain and Steva</span></strong
+            >! All Rights Reserved
+          </div>
+        </div>
+      </div>
+    </footer>
 
-  <!-- ======= Theme JS ======= -->
-  <script src="./assets/js/script.js"></script>
-</body>
+    <!-- ======= jQuery, Popper.js and Bootstrap JS ======= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 
+    <!-- ======= Theme JS ======= -->
+    <script src="./assets/js/random.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
