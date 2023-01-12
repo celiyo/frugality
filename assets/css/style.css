@@ -245,11 +245,6 @@ header {
   padding-bottom: 0;
 }
 
-.inspire-me img {
-  transform: rotate(56deg);
-  width: 70%;
-}
-
 .inspire-me form {
   order: 0;
 }
@@ -433,6 +428,7 @@ input[type=Number]:hover {
   /* box-shadow: 0 0 15px; */
 }
 
+
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
@@ -515,16 +511,6 @@ input[type=Number]:hover {
   }
 
   /* Inspire */
-  .inspire-me img {
-    transform: rotate(180deg);
-    width: 80%;
-  }
-
-  .inspire-me .inspire-img {
-    order: 0;
-    justify-content: flex-start;
-  }
-
   .inspire-me form {
     order: 1;
   }
