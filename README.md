@@ -24,5 +24,10 @@ Javascript proved our biggest nemesis - we had to rely on each other, console.lo
 
 ## Screenshot and Deployed Site
 
+Deployed site: https://celiyo.github.io/frugality/
+
+![FireShot Capture 009 - Frugality - One stop meals inspiration! - ](https://user-images.githubusercontent.com/115502589/212178447-000b9193-f632-42fd-8790-39122a3d20cf.png)
+
+
 ## License
 Please refer to the LICENSE in the repo.
