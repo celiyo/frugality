@@ -5,11 +5,12 @@
 :root {
   --white: #ffffff;
   --green: #1abc9c;
-  --dark-green: #138b73;
   --light-gray: #f3f3f3;
-  --medium-gray: #b2afaf;
   --dark-gray: #181818;
   --black: #000000;
+  --gold: #ffd700;
+  --reddish: #f70e0e;
+  --orange: #dd5a0e;
 }
 
 body {
@@ -58,10 +59,14 @@ section {
   padding: 3rem 1rem;
 }
 
+/* Hello & Welcome: search button  */
 .custom-btn {
-  background-color: var(--green);
+  background-color: var(--gold);
   font-size: clamp(14px, 1vw, 16px);
   text-transform: uppercase;
+  font-weight: bold;
+  /* adding transition */
+  transition: 0.5s;
 }
 
 /**
@@ -69,6 +74,15 @@ section {
  * ------------------------------------------------------------------------- */
 header {
   background-color: var(--black);
+}
+
+/* navbar mild glow effect */
+.nav-link:hover {
+  color: var(--orange);
+  text-shadow: 0 0 5px orange,
+    0 0 25px orange,
+    0 0 50px orange,
+    0 0 100px orange;
 }
 
 .navbar-dark .navbar-toggler {
@@ -153,11 +167,25 @@ header {
 }
 
 .hero-button {
-  background-color: var(--green);
+  background-color: var(--gold);
+  color: var(--dark-gray);
   width: 160px;
   height: 40px;
   font-weight: 700;
   font-size: clamp(14px, 1vw, 16px);
+  /* adding transition */
+  transition: 0.5s;
+  z-index: 5;
+}
+
+/* buttons will be adding a hover effect which includes slight letter spacing and a glow effect */
+.btn:hover {
+  letter-spacing: 0.25em;
+  color: var(--light-gray);
+  /* font-family: 'Playfair Display', serif; font doesn't really work well as uppercase*/
+  font-family: 'Lato', '' sans-serif;
+  background: var(--reddish);
+  /* box-shadow: 0 0 15px; */
 }
 
 .hero-img-container {
@@ -203,6 +231,10 @@ header {
 /**
  * INSPIRE ME SECTION
  * ------------------------------------------------------------------------- */
+ #inspireMe {
+   background-color: var(--orange);
+ }
+
 .title-content {
   padding-bottom: 1.5rem;
 }
@@ -211,11 +243,6 @@ header {
   order: 1;
   justify-content: center;
   padding-bottom: 0;
-}
-
-.inspire-me img {
-  transform: rotate(56deg);
-  width: 70%;
 }
 
 .inspire-me form {
@@ -273,6 +300,9 @@ header {
 /**
  * MEAL INSPIRATION SECTION
  * ------------------------------------------------------------------------- */
+.mealinspo {
+  background-color: var(--black);
+}
 
 .meal-card {
   display: flex;
@@ -290,12 +320,13 @@ header {
   text-align: center;
 }
 
+
 /**
  * FOOTER SECTION
  * ------------------------------------------------------------------------- */
 .footer {
   background: var(--dark-gray);
-  padding: 100px 0;
+  padding: 20px 0;
   font-size: 14px;
   text-align: center;
   color: var(--light-gray);
@@ -372,16 +403,6 @@ header {
   }
 
   /* Inspire */
-  .inspire-me img {
-    transform: rotate(180deg);
-    width: 80%;
-  }
-
-  .inspire-me .inspire-img {
-    order: 0;
-    justify-content: flex-start;
-  }
-
   .inspire-me form {
     order: 1;
   }
