@@ -44,10 +44,10 @@ h4 {
   font-size: clamp(20px, 2vw, 22px);
 }
 
-/* a {
+a {
   color: var(--white);
   text-transform: uppercase;
-} */
+}
 
 img {
   width: 100%;
@@ -282,15 +282,12 @@ header {
 
 .meal-inspo {
   margin-top: 15px;
+  text-align: center;
 }
 
-.meal-text {
+.card-text {
   margin-top: 10px;
-}
-
-.meal-img {
-  height: auto;
-  max-width: 100%;
+  text-align: center;
 }
 
 /**
